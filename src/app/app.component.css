@@ -1,0 +1,10 @@
+.container{
+    width: 400px;
+    height: 600px;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    border-style: none;
+    border: 2px solid #00406c;
+    border-radius: 14px;
+}
+
