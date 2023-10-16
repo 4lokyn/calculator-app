@@ -6,6 +6,7 @@ section{
     display: grid;
     height: 80%;
     grid-template-columns: 3fr 1fr;
+    padding-bottom: 10px;
 
 }
 .top-buttons{
@@ -41,14 +42,35 @@ button {
     border-radius: 50%;
     cursor: pointer;
     font-size: 2rem;
+    box-shadow: 4px 5px 0px 5px #000000;
 }
+
+button:active{
+    box-shadow: 0px 2px 0px 2px #000000;
+    border:2px solid #000000;
+    font-size: 25px;
+}
+
+
 #btnEqual{
+    margin-top: 5px;
     background-color: #f18f01;
     border-radius: 22px;
-
+    text-shadow: 3px 5px 2px #474747;
     height: 140px;
 }
 
 #btnReset{
     background-color: #f18f01;
+    text-shadow: 3px 5px 2px #474747;
+    
+}
+
+#logBtn{
+    font-size: 14px;
+    color:#f18f01;
+}
+
+#logBtn:active{
+    font-size: 12px;
 }

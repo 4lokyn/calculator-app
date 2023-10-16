@@ -18,6 +18,7 @@ input{
     background-color: #00253e;
     border-style: none;
     border-radius: 14px;
+    border: 2px solid #000000 ;
     color: white;
     text-align: end;
     padding-right: 10px;

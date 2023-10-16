@@ -1,5 +1,11 @@
 <div class="container">
-        <app-cal-results></app-cal-results>
-        <app-cal-buttons></app-cal-buttons>
+        <app-cal-results [synch]="synchValue"></app-cal-results>
+        <app-cal-buttons
+                (numA)="takeValue($event)" 
+                (ops)="takeValue($event)" 
+                (numB)="takeValue($event)"
+                (res)="resValue($event)"
+                (resC)="resCvalue($event)">
+        </app-cal-buttons>
 </div>
 

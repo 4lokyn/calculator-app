@@ -1,55 +1,34 @@
 <div class="buttons-container">
     <div class="top-buttons">
-        <button id="btnReset">C</button>
-        <button>&radic;</button>
-        <button>&#247;</button>
-        <button>&times;</button>
+        <button 
+            *ngFor="let button of operatorTop"
+            #button.reference
+            (click)="onClick(button.reference)" 
+            [id]="button.id"
+            >{{button.operator}}
+        </button>
     </div>
+
     <section>
         <div class="num-buttons">
-            <div class="button-number">
-                <button>7</button>
+            <div class="button-number" *ngFor="let number of numbers">
+                <button 
+                    #number.reference
+                    (click)="onClick(number.reference)" 
+                    [id]="number.id"
+                    >{{number.number}}
+                </button>
             </div>
-            <div class="button-number">
-                <button>8</button>
-            </div>
-            <div class="button-number">
-                <button>9</button>
-            </div>
-            <div class="button-number">
-                <button>4</button>
-            </div>
-            <div class="button-number">
-                <button>5</button>
-            </div>
-            <div class="button-number">
-                <button>6</button>
-            </div>
-            <div class="button-number">
-                <button>1</button>
-            </div>
-            <div class="button-number">
-                <button>2</button>
-            </div>
-            <div class="button-number">
-                <button>3</button>
-            </div>
-            <div class="button-number">
-                <button></button>
-            </div>
-            <div class="button-number">
-                <button>0</button>
-            </div>
-            <div class="button-number">
-                <button>.</button>
-            </div>
-
-
         </div>
+
         <div class="right-buttons">
-            <button>-</button>
-            <button>&plus;</button>
-            <button id="btnEqual">=</button>
+            <button 
+                *ngFor="let button of operatorsRight"
+                #button.reference
+                (click)="onClick(button.reference)" 
+                [id]="button.id"
+            >{{button.operator}}
+            </button>
         </div>
     </section>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cal-results',
@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CalResultsComponent {
 
+  @Input() synch:string;
+  
+  forwardedValue:string = ''
+
 }
+
+
+
+

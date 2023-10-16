@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'calculator-app';
+
+  synchValue:string = ''
+
+  takeValue(event:any){
+    this.synchValue = event
+  }
+  resValue(event:any){
+    console.log('event je '+event);
+    this.synchValue = event
+  }
+
+  resCvalue(event:any){
+      this.synchValue = event
+  }
+
 }
