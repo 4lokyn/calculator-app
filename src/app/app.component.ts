@@ -9,16 +9,20 @@ export class AppComponent {
 
   synchValue:string = ''
 
+
+
   takeValue(event:any){
     this.synchValue = event
   }
   resValue(event:any){
-    console.log('event je '+event);
+    // this.synchValue = event
     this.synchValue = event
-  }
+}
 
   resCvalue(event:any){
       this.synchValue = event
+      // this.catchEqual = true
+    
   }
 
 }

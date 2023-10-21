@@ -1,6 +1,9 @@
 <div class="results-container">
     <div class="result-log"></div>
     <div class="result-current">
-        <input type="text" [(ngModel)]="synch" > 
+        <input type="text" 
+        #catchEqual
+        [(ngModel)]="synch" 
+        (keydown)="onKeyDown($event)"> 
     </div>
 </div>

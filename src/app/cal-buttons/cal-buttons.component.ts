@@ -11,6 +11,7 @@ export class CalButtonsComponent {
   numberB:any = '';
   operator:any = '';
   flag:number = 0;
+  equalFlag:number = 0;
 
     @Output() numA = new EventEmitter<string>();
     @Output() ops = new EventEmitter<string>();
@@ -47,20 +48,33 @@ export class CalButtonsComponent {
 
     onClick(value:any){
       
-      if(this.numbers.some(elem=> elem.number==value)){
-            if(this.flag == 0){
+        
+      if(this.numbers.some(elem=> elem.number==value) || value == '='){
+            if(this.flag == 0 && value !=='='){
               this.numberA += value
               console.log('Broj A '+this.numberA);
               this.numA.emit(this.numberA)
+
             } else{
+              if(value !== '='){
               this.numberB += value
               console.log('Broj B '+this.numberB);
-              
               this.numB.emit(this.numberB)
-              this.math()
+             } else {
+                if(this.operator == '√'){
+                  this.operator = '='
+                  this.math()
+                } else {
+                  this.math();
+                  this.operator = '='
+                  this.math()
+                }
+             }
+
             }
+
       } else {
-            if(value == 'C' || value == '='){
+            if(value == '√' || value == 'C'){
               this.operator = value
               this.math()
             } else {
@@ -73,20 +87,19 @@ export class CalButtonsComponent {
 
       math(){
         switch(this.operator){
-          case '+': this.numberA = parseInt(this.numberA)+parseInt(this.numberB);this.flag=1;break;
-          case '-': this.numberA = parseInt(this.numberA)-parseInt(this.numberB);this.flag=1;break;
-          case '*': this.numberA = parseInt(this.numberA)*parseInt(this.numberB);this.flag=1;break;
-          case '/': this.numberA = parseInt(this.numberA)/parseInt(this.numberB);this.flag=1;break;
-          case '√': this.numberA = parseInt(this.numberA)*parseInt(this.numberB);this.flag=1;break;  
+          case '+': this.numberA = parseFloat(this.numberA)+parseFloat(this.numberB);this.flag=1;break;
+          case '-': this.numberA = parseFloat(this.numberA)-parseFloat(this.numberB);this.flag=1;break;
+          case '*': this.numberA = parseFloat(this.numberA)*parseFloat(this.numberB);this.flag=1;break;
+          case '/': this.numberA = parseFloat(this.numberA)/parseFloat(this.numberB);this.flag=1;break;
+          case '√': this.numberA = Math.sqrt(this.numberA);this.flag=1;break;
           case 'C':
-            this.flag=0;
-            this.numberA = ''
-            this.numberB = ''
-            this.resC.emit(this.numberA)
-            break; 
+                    this.flag=0;
+                    this.numberA = ''
+                    this.numberB = ''
+                    this.resC.emit(this.numberA)
+                    break; 
           case '=':this.res.emit(this.numberA);break;
         }
-        this.numberB = ''
+       this.numberB = ''
       }
-    
   }
