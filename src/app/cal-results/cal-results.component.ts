@@ -16,20 +16,29 @@ export class CalResultsComponent {
   opsValidation:RegExp = /[-+*/=]/
   operatorType = ['+','-','*','/'];
   numberValue = ['0',"1","2","3","4","5","6","7","8","9"]
-
-  firstNum:string;
-  secondNum:string;
-  operator:string;
+  
   numFlag = 0
-  result:{};
-  getNumOps=[]
-  @Output() sendInputData = new EventEmitter<[{na:string,op:string,nb:string}]>()
+
+
+  @Output() firstNum = new EventEmitter<string>()
+  @Output() operator = new EventEmitter<string>()
+  @Output() secondNum = new EventEmitter<string>()
+
 
   onKeyDown(event: KeyboardEvent){
-    
+    if(this.numberValue.includes(event.key)){
+      if(this.numFlag == 0){
+        this.firstNum.emit(event.key)
+      } else {
+        this.secondNum.emit(event.key)
+      }
+    } else if(this.operatorType.includes(event.key)){
+      this.numFlag = 1
+      this.operator.emit(event.key)
       
-
-    } 
+      
+    }
+  }
     
       
 

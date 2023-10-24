@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cal-buttons',
@@ -18,6 +18,9 @@ export class CalButtonsComponent {
     @Output() numB = new EventEmitter<string>();
     @Output() res = new EventEmitter<string>();
     @Output() resC = new EventEmitter<string>();
+    @Input() numberAinput:string = ''
+    @Input() operatorInput:string = ''
+    @Input() numberBinput:string = ''
 
   operatorTop = [
   {"operator":'C',"reference":'C','id':'btnReset'},
@@ -48,42 +51,41 @@ export class CalButtonsComponent {
 
     onClick(value:any){
       
-        
-      if(this.numbers.some(elem=> elem.number==value) || value == '='){
-            if(this.flag == 0 && value !=='='){
-              this.numberA += value
-              console.log('Broj A '+this.numberA);
-              this.numA.emit(this.numberA)
-
-            } else{
+      // this.numberA = this.numberAinput
+      // this.numberB = this.numberBinput
+      // this.operator = this.operatorInput
+    
+      
+        if(this.numbers.some(elem=> elem.number==value) || value == '='){
+          if(this.flag == 0 && value !== '=' ){ 
+            this.numberA += value
+            this.numA.emit(this.numberA)
+          } else{
               if(value !== '='){
-              this.numberB += value
-              console.log('Broj B '+this.numberB);
-              this.numB.emit(this.numberB)
-             } else {
-                if(this.operator == '√'){
-                  this.operator = '='
-                  this.math()
-                } else {
-                  this.math();
-                  this.operator = '='
-                  this.math()
+                this.numberB += value
+                this.numB.emit(this.numberB)
+              } else {
+                  if(this.operator == '√'){
+                    this.operator = '='
+                    this.math()
+                  } else {
+                    this.math();
+                    this.operator = '='
+                    this.math()
+                  }
                 }
-             }
-
             }
-
-      } else {
-            if(value == '√' || value == 'C'){
-              this.operator = value
-              this.math()
+        } else {
+          if(value == '√' || value == 'C'){
+            this.operator = value
+            this.math()
             } else {
               this.flag = 1
               this.operator = value
               this.ops.emit(this.operator)
             }
           }
-      } 
+    } 
 
       math(){
         switch(this.operator){

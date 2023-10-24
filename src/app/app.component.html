@@ -1,11 +1,20 @@
 <div class="container">
-        <app-cal-results [synch]="synchValue" ></app-cal-results>
+        <app-cal-results
+                 [synch]="synchValue" 
+                 (firstNum)="takeNumberA($event)" 
+                 (operator)="takeOperator($event)"
+                 (secondNum)="takeNumberB($event)"
+                 ></app-cal-results>
         <app-cal-buttons
                 (numA)="takeValue($event)" 
                 (ops)="takeValue($event)" 
                 (numB)="takeValue($event)"
                 (res)="resValue($event)"
-                (resC)="resCvalue($event)">
+                (resC)="resCvalue($event)"
+                [numberAinput]="numberAinput"
+                [operatorInput]="operatorInput"
+                [numberBinput]="numberBinput">
+               
         </app-cal-buttons>
 </div>
 
